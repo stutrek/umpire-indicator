@@ -38,18 +38,28 @@ button {
 	text-align: center;
 }
 .resets button {
-	padding: 20px 0;
+	padding: 16px 0;
 	line-height: 18px;
 	margin: 0;
 	border-bottom: 1px solid silver;
 	border-right: 1px solid silver;
 }
 .resets button[data-reset=batter] {
-	padding: 40px 0;
+	padding: 32px 0;
 	line-height: 37px;
 	border-right: none;
 }
 .resets div {
 	float: right;
 	width: 50%;
+}
+.copyright {
+	clear: both;
+	opacity: 0.5;
+	font-size: 12px;
+	text-align: center;
+	padding: 3px;
+}
+a {
+	text-decoration: none;
 }
