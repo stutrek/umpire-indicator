@@ -6,6 +6,7 @@ var undoHistory = [];
 
 function count (element) {
 	var countBy = 1;
+	resetEvent( element );
 	if (element.getAttribute('data-count')) {
 		countBy = parseFloat(element.getAttribute('data-count'));
 	}
@@ -37,6 +38,7 @@ function resetEvent (element) {
 	
 	[].forEach.call(elementsToReset, resetElement);
 }
+
 function maxEvent (element) {
 	if (!element.hasAttribute('data-max-event')) {
 		return;
@@ -98,8 +100,10 @@ document.addEventListener(eventName, function (event) {
 	}
 	if (element.classList.contains('counter')) {
 		count( element );
+	} else {
+		resetEvent( element );
 	}
-	resetEvent( element );
+
 	if (element.classList.contains('undo')) {
 		undoHistory.pop();
 		var undone = undoHistory.pop();
