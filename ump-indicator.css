@@ -1,22 +1,38 @@
 body {
 	font-family: helvetica, arial, sans-serif;
+	width: 100%;
 	max-width: 400px;
 	margin: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+.counters {
+	height: 72%;
+	width: 100%;
 }
 .counters div {
 	float: left;
 	width: 50%;
 	box-sizing: border-box;
+	height: 33.333333333%;
+	border-right: 1px solid silver;
+	border-bottom: 1px solid silver;
+	position: relative;
 }
 label {
 	display: block;
 	padding: 8px;
-	border-right: 1px solid silver;
-	border-bottom: 1px solid silver;
 	text-align: center;
 }
-div:nth-child(even) label {
+div:nth-child(even) {
 	border-right: none;
+}
+.counters div span {
+	position: absolute;
+	top: 4%;
+	left: 0;
+	right: 0;
 }
 
 button {
@@ -32,26 +48,44 @@ button {
 	width: 100%;
 }
 .counters button {
+	position: absolute;
+	top: 20%;
+	left: 0;
+	right: 0;
 	font-size: 70px;
 }
 .resets {
 	text-align: center;
+	height: 24%;
+	position: relative;
+	top: -1px;
+	border-bottom: 1px solid silver;
 }
 .resets button {
 	padding: 16px 0;
 	line-height: 18px;
 	margin: 0;
 	border-bottom: 1px solid silver;
-	border-right: 1px solid silver;
+	height: 50%;
+}
+.resets button:last-child {
+	border-bottom: none;
 }
 .resets button[data-reset=batter] {
 	padding: 32px 0;
 	line-height: 37px;
 	border-right: none;
+	height: 100%;
 }
 .resets div {
 	float: right;
 	width: 50%;
+	height: 100%;
+	border-right: 1px solid silver;
+	box-sizing: border-box;
+}
+.resets div:first-child {
+	border-right: none;
 }
 .copyright {
 	clear: both;
