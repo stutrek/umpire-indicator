@@ -4,10 +4,14 @@
 var buttons = [].slice.call(document.querySelectorAll('button.counter'));
 var undoHistory = [];
 
-function count (element) {
+function forEach(ctx, cb) {
+	Array.prototype.forEach.call( ctx, cb );
+}
+
+function incrementElement (element) {
 	var countBy = 1;
-	resetEvent( element );
-	if (element.getAttribute('data-count')) {
+	sendResetEventForElement( element );
+	if (element.hasAttribute('data-count')) {
 		countBy = parseFloat(element.getAttribute('data-count'));
 	}
 	var value = parseFloat(element.innerHTML);
@@ -16,7 +20,6 @@ function count (element) {
 		var max = parseFloat(element.getAttribute('data-max'));
 		if (newValue > max) {
 			maxEvent( element );
-			resetEvent( element );
 			resetElement( element );
 			return;
 		}
@@ -29,14 +32,17 @@ function resetElement (element) {
 	element.innerHTML = start;
 }
 
-function resetEvent (element) {
+function resetElementsWithProperty (prop) {
+	var elementsToReset = document.querySelectorAll('button[data-reset-event~='+prop+']');
+	
+	forEach(elementsToReset, resetElement);
+}
+function sendResetEventForElement (element) {
 	if (!element.hasAttribute('data-reset')) {
 		return;
 	}
 	var prop = element.getAttribute('data-reset');
-	var elementsToReset = document.querySelectorAll('button[data-reset-event~='+prop+']');
-	
-	[].forEach.call(elementsToReset, resetElement);
+	resetElementsWithProperty( prop );
 }
 
 function maxEvent (element) {
@@ -46,25 +52,24 @@ function maxEvent (element) {
 	var prop = element.getAttribute('data-max-event');
 	var elementsToIncrement = document.querySelectorAll('button[data-increment-event~='+prop+']');
 	
-	[].forEach.call(elementsToIncrement, function (elementToIncrement) {
-		count( elementToIncrement );
+	forEach(elementsToIncrement, function (elementToIncrement) {
+		incrementElement( elementToIncrement );
 	});
 
-	var elementsToReset = document.querySelectorAll('button[data-reset-event~='+prop+']');
-	[].forEach.call(elementsToReset, resetElement);
+	resetElementsWithProperty( prop );
 }
 
-function save () {
+function saveState () {
 	var results = buttons.map(function (element) { return element.innerHTML; });
 	while (undoHistory.length > 100) {
 		undoHistory.shift();
 	}
-	undoHistory.push(results);
+	undoHistory.push( results );
 	localStorage.setItem('ump-indicator-data', JSON.stringify(results));
 	localStorage.setItem('ump-indicator-undo', JSON.stringify(undoHistory));
 }
 
-function restore (data) {
+function restoreState (data) {
 	buttons.forEach(function (element, index) {
 		element.innerHTML = data[index];
 	});
@@ -72,11 +77,11 @@ function restore (data) {
 
 var savedData = localStorage.getItem('ump-indicator-data');
 if (savedData) {
-	undoHistory = JSON.parse(localStorage.getItem('ump-indicator-undo') || '[]');
-	restore(JSON.parse(savedData));
+	undoHistory = JSON.parse( localStorage.getItem('ump-indicator-undo') || '[]' );
+	restoreState( JSON.parse( savedData ) );
 } else {
 	undoHistory = [];
-	save();
+	saveState();
 }
 
 var eventName = 'click';
@@ -99,17 +104,17 @@ document.addEventListener(eventName, function (event) {
 		element = event.target.control;
 	}
 	if (element.classList.contains('counter')) {
-		count( element );
+		incrementElement( element );
 	} else {
-		resetEvent( element );
+		sendResetEventForElement( element );
 	}
 
 	if (element.classList.contains('undo')) {
 		undoHistory.pop();
-		var undone = undoHistory.pop();
-		if (undone) {
-			restore( undone );
+		var desiredState = undoHistory.pop();
+		if (desiredState) {
+			restoreState( desiredState );
 		}
 	}
-	save();
+	saveState();
 }, true);
