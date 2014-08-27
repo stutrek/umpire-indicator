@@ -1,0 +1,27 @@
+<!doctype html>
+<html manifest="ump.appcache">
+<head>
+	<title>Umpire Indicator</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="white">
+	<meta name="viewport" content="initial-scale=1, user-scalable=no, width=device-width">
+	<link rel="stylesheet" href="./ump-indicator.css">
+</head>
+<body>
+	<div class="counters">
+		<div><label><span>Balls</span> <button class="counter" data-reset-event="batter inning game">0</button></label></div>
+		<div><label><span>Strikes</span> <button class="counter" data-reset-event="batter inning game">0</button></label></div>
+		<div><label><span>Inning</span> <button class="counter" data-reset-event="game" data-reset="inning" data-count="0.5" data-start="1">1</button></label></div>
+		<div><label><span>Outs</span> <button class="counter" data-reset-event="inning game">0</button></label></div>
+		<div><label><span>Home</span> <button class="counter" data-reset-event="game">0</button></label></div>
+		<div><label><span>Away</span> <button class="counter" data-reset-event="game">0</button></label></div>
+	</div>
+	<div class="resets">
+		<div><button data-reset="batter">Next Batter</button></div>
+		<div>
+			<button data-reset="game">End Game</button>
+			<button class="undo">Undo</button>
+		</div>
+	</div>
+	<script type="text/javascript" src="./ump-indicator.js"></script>
+</body>

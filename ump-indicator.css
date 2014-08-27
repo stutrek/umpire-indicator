@@ -1,0 +1,55 @@
+body {
+	font-family: helvetica, arial, sans-serif;
+	max-width: 400px;
+	margin: auto;
+}
+.counters div {
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+}
+label {
+	display: block;
+	padding: 8px;
+	border-right: 1px solid silver;
+	border-bottom: 1px solid silver;
+	text-align: center;
+}
+div:nth-child(even) label {
+	border-right: none;
+}
+
+button {
+	font-family: helvetica, arial, sans-serif;
+	border: 0;
+	background: none;
+	font-weight: bold;
+	font-size: 1em;
+	text-align: center;
+	display: block;
+	margin: auto;
+	padding: 0;
+	width: 100%;
+}
+.counters button {
+	font-size: 70px;
+}
+.resets {
+	text-align: center;
+}
+.resets button {
+	padding: 20px 0;
+	line-height: 18px;
+	margin: 0;
+	border-bottom: 1px solid silver;
+	border-right: 1px solid silver;
+}
+.resets button[data-reset=batter] {
+	padding: 40px 0;
+	line-height: 37px;
+	border-right: none;
+}
+.resets div {
+	float: right;
+	width: 50%;
+}
