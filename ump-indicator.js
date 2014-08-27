@@ -1,3 +1,4 @@
+/* jshint latedef: false */
 'use strict';
 
 var buttons = [].slice.call(document.querySelectorAll('button.counter'));
@@ -9,17 +10,46 @@ function count (element) {
 		countBy = parseFloat(element.getAttribute('data-count'));
 	}
 	var value = parseFloat(element.innerHTML);
+	var newValue = value + countBy;
+	if (element.hasAttribute('data-max')) {
+		var max = parseFloat(element.getAttribute('data-max'));
+		if (newValue > max) {
+			maxEvent( element );
+			resetEvent( element );
+			resetElement( element );
+			return;
+		}
+	}
 	element.innerHTML = value + countBy;
 }
 
-function reset (element) {
+function resetElement (element) {
+	var start = element.getAttribute('data-start') || 0;
+	element.innerHTML = start;
+}
+
+function resetEvent (element) {
+	if (!element.hasAttribute('data-reset')) {
+		return;
+	}
 	var prop = element.getAttribute('data-reset');
 	var elementsToReset = document.querySelectorAll('button[data-reset-event~='+prop+']');
 	
-	[].forEach.call(elementsToReset, function (elementToReset) {
-		var start = elementToReset.getAttribute('data-start') || 0;
-		elementToReset.innerHTML = start;
+	[].forEach.call(elementsToReset, resetElement);
+}
+function maxEvent (element) {
+	if (!element.hasAttribute('data-max-event')) {
+		return;
+	}
+	var prop = element.getAttribute('data-max-event');
+	var elementsToIncrement = document.querySelectorAll('button[data-increment-event~='+prop+']');
+	
+	[].forEach.call(elementsToIncrement, function (elementToIncrement) {
+		count( elementToIncrement );
 	});
+
+	var elementsToReset = document.querySelectorAll('button[data-reset-event~='+prop+']');
+	[].forEach.call(elementsToReset, resetElement);
 }
 
 function save () {
@@ -69,9 +99,7 @@ document.addEventListener(eventName, function (event) {
 	if (element.classList.contains('counter')) {
 		count( element );
 	}
-	if (element.hasAttribute('data-reset')) {
-		reset( element );
-	}
+	resetEvent( element );
 	if (element.classList.contains('undo')) {
 		undoHistory.pop();
 		var undone = undoHistory.pop();
