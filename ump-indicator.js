@@ -4,8 +4,16 @@
 var buttons = [].slice.call(document.querySelectorAll('button.counter'));
 var undoHistory = [];
 
-function forEach(ctx, cb) {
-	Array.prototype.forEach.call( ctx, cb );
+function forEach (ctx, cb) {
+	Array.prototype.forEach.call(ctx, cb);
+}
+
+function hasClass (element, className) {
+	if (element.classList) {
+		return element.classList.contains(className);
+	}
+	var classes = element.className.split(' ');
+	return classes.indexOf(className) !== -1;
 }
 
 function incrementElement (element) {
@@ -103,13 +111,13 @@ document.addEventListener(eventName, function (event) {
 	if (event.target.control) {
 		element = event.target.control;
 	}
-	if (element.classList.contains('counter')) {
+	if (hasClass(element, 'counter')) {
 		incrementElement( element );
 	} else {
 		sendResetEventForElement( element );
 	}
 
-	if (element.classList.contains('undo')) {
+	if (hasClass(element, 'undo')) {
 		undoHistory.pop();
 		var desiredState = undoHistory.pop();
 		if (desiredState) {

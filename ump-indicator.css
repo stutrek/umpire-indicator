@@ -1,12 +1,13 @@
 body {
 	font-family: helvetica, arial, sans-serif;
 	width: 100%;
+	height: 100%;
 	margin: auto;
 	position: absolute;
 	top: 0;
 	bottom: 0;
 }
-@media only screen and (min-device-width: 769px) and (min-device-height: 769px){
+@media only screen and (min-width: 769px) and (min-height: 769px){
 	body {
 		width: 600px;
 		height: 800px;
@@ -22,6 +23,8 @@ body {
 	float: left;
 	width: 50%;
 	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 	height: 33.333333333%;
 	border-right: 1px solid silver;
 	border-bottom: 1px solid silver;
@@ -61,6 +64,7 @@ button {
 	left: 0;
 	right: 0;
 	font-size: 70px;
+	line-height: 1;
 }
 .resets {
 	text-align: center;
@@ -91,6 +95,8 @@ button {
 	height: 100%;
 	border-right: 1px solid silver;
 	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 .resets div:first-child {
 	border-right: none;

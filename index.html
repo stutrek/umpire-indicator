@@ -3,53 +3,117 @@
 <head>
 	<title>Umpire Indicator</title>
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="viewport" content="initial-scale=1, user-scalable=no, width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<link rel="stylesheet" href="./ump-indicator.css">
-		<!-- iOS 7 iPad (retina) -->
-		<link href="./icons/icon-76@2x.png"
-			  sizes="152x152"
-			  rel="apple-touch-icon">
- 
-		<!-- iOS 6 iPad (retina) -->
-		<link href="./icons/icon-72@2x.png"
-			  sizes="144x144"
-			  rel="apple-touch-icon">
- 
-		<!-- iOS 7 iPhone (retina) -->
-		<link href="./icons/icon-60@2x.png"
-			  sizes="120x120"
-			  rel="apple-touch-icon">
- 
-		<!-- iOS 6 iPhone (retina) -->
-		<link href="./icons/icon@2x.png"
-			  sizes="114x114"
-			  rel="apple-touch-icon">
- 
-		<!-- iOS 7 iPad -->
-		<link href="./icons/icon-76.png"
-			  sizes="76x76"
-			  rel="apple-touch-icon">
- 
-		<!-- iOS 6 iPad -->
-		<link href="./icons/icon-72.png"
-			  sizes="72x72"
-			  rel="apple-touch-icon">
- 
-		<!-- iOS 6 iPhone -->
-		<link href="./icons/icon.png"
-			  sizes="57x57"
-			  rel="apple-touch-icon">
+	<!-- Android -->
+	<link href="./icons/icon-76@2x.png"
+		  sizes="152x152"
+		  rel="icon">
+	
+	<!-- iOS 7 iPad (retina) -->
+	<link href="./icons/icon-76@2x.png"
+		  sizes="152x152"
+		  rel="apple-touch-icon">
+
+	<!-- iOS 6 iPad (retina) -->
+	<link href="./icons/icon-72@2x.png"
+		  sizes="144x144"
+		  rel="apple-touch-icon">
+
+	<!-- iOS 7 iPhone (retina) -->
+	<link href="./icons/icon-60@2x.png"
+		  sizes="120x120"
+		  rel="apple-touch-icon">
+
+	<!-- iOS 6 iPhone (retina) -->
+	<link href="./icons/icon@2x.png"
+		  sizes="114x114"
+		  rel="apple-touch-icon">
+
+	<!-- iOS 7 iPad -->
+	<link href="./icons/icon-76.png"
+		  sizes="76x76"
+		  rel="apple-touch-icon">
+
+	<!-- iOS 6 iPad -->
+	<link href="./icons/icon-72.png"
+		  sizes="72x72"
+		  rel="apple-touch-icon">
+
+	<!-- iOS 6 iPhone -->
+	<link href="./icons/icon.png"
+		  sizes="57x57"
+		  rel="apple-touch-icon">
 </head>
 <body>
 	<div class="counters">
-		<div><label><span>Balls</span> <button class="counter" data-reset-event="batter inning game strikes" data-max="3" data-max-event="batter">0</button></label></div>
-		<div><label><span>Strikes</span> <button class="counter" data-reset-event="batter inning game" data-max="2" data-max-event="strikes">0</button></label></div>
-		<div><label><span>Inning</span> <button class="counter" data-reset-event="game" data-reset="inning" data-count="0.5" data-start="1" data-increment-event="outs">1</button></label></div>
-		<div><label><span>Outs</span> <button class="counter" data-reset-event="inning game" data-max="2" data-max-event="outs" data-increment-event="strikes">0</button></label></div>
-		<div><label><span>Away</span> <button class="counter" data-reset-event="game">0</button></label></div>
-		<div><label><span>Home</span> <button class="counter" data-reset-event="game">0</button></label></div>
+		<div><label>
+			<span>Balls</span>
+			<button
+				class="counter"
+				data-reset-event="batter inning game strikes"
+				data-max="3"
+				data-max-event="batter">
+					0
+			</button>
+		</label></div>
+		
+		<div><label>
+			<span>Strikes</span>
+			<button
+				class="counter"
+				data-reset-event="batter inning game"
+				data-max="2"
+				data-max-event="strikeout">
+					0
+			</button>
+		</label></div>
+		
+		<div><label>
+			<span>Inning</span>
+			<button
+				class="counter"
+				data-reset-event="game"
+				data-reset="inning"
+				data-count="0.5"
+				data-start="1"
+				data-increment-event="outs">
+					1
+			</button>
+		</label></div>
+		
+		<div><label>
+			<span>Outs</span>
+			<button
+				class="counter"
+				data-reset-event="inning game"
+				data-max="2"
+				data-max-event="outs"
+				data-increment-event="strikeout">
+					0
+			</button>
+		</label></div>
+		
+		<div><label>
+			<span>Away</span>
+			<button
+				class="counter"
+				data-reset-event="game">
+					0
+			</button>
+		</label></div>
+		
+		<div><label>
+			<span>Home</span>
+			<button
+				class="counter"
+				data-reset-event="game">
+					0
+			</button>
+		</label></div>
 	</div>
+
 	<div class="resets">
 		<div><button data-reset="batter">Next Batter</button></div>
 		<div>
