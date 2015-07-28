@@ -1,5 +1,7 @@
-/* jshint latedef: false */
-'use strict';
+
+if (/iPhone|iPod|iPad/.test(navigator.userAgent)) {
+	document.body.classList.add('ios');
+}
 
 var buttons = [].slice.call(document.querySelectorAll('button.counter'));
 var undoHistory = [];
@@ -45,6 +47,7 @@ function resetElementsWithProperty (prop) {
 	
 	forEach(elementsToReset, resetElement);
 }
+
 function sendResetEventForElement (element) {
 	if (!element.hasAttribute('data-reset')) {
 		return;

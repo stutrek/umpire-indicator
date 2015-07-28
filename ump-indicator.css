@@ -19,6 +19,9 @@ body {
 	height: 72%;
 	width: 100%;
 }
+.ios .counters {
+	height: 69%;
+}
 .counters div {
 	float: left;
 	width: 50%;
@@ -73,6 +76,9 @@ button {
 	top: -1px;
 	border-bottom: 1px solid silver;
 }
+.ios .resets {
+	height: 22%;
+}
 .resets button {
 	padding: 16px 0;
 	line-height: 18px;
@@ -100,6 +106,15 @@ button {
 }
 .resets div:first-child {
 	border-right: none;
+}
+.get-app {
+	display: none;
+}
+.ios .get-app {
+	display: block;
+	clear: both;
+	font-size: 24px;
+	text-align: center;
 }
 .copyright {
 	clear: both;
