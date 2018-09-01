@@ -1,0 +1,31 @@
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: auto auto;
+	font-size: 16px;
+	border-bottom: 1px solid #333;
+	grid-template:
+		"a b c"
+		"d d d"
+}
+
+.big-number {
+	text-align: center;
+}
+
+.away, .home, .inningTop, .inningBottom {
+	composes: big-number;
+}
+.big-number .label {
+	display: block;
+}
+.big-number .value {
+	display: block;
+	font-size: 36px;
+	padding: 5px;
+}
+
+.details {
+	grid-area: d;
+	text-align: center;
+}

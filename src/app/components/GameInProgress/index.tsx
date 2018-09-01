@@ -15,12 +15,12 @@ export const GameInProgress = (props : GameInProgress.Props) => {
 	const isTop = (game.inning % 2) === 0;
 
 	return (<div className={style.container}>
-		<div className={style.awayRuns}>
-			<span className={style.label}>Away</span>
+		<div className={style.away}>
+			<span className={style.label}>{game.visitorName}</span>
 			<span className={style.value}>{game.visitorScore}</span>
 		</div>
-		<div className={style.homeRuns}>
-			<span className={style.label}>Home</span>
+		<div className={style.home}>
+			<span className={style.label}>{game.homeName}</span>
 			<span className={style.value}>{game.homeScore}</span>
 		</div>
 		<div className={isTop ? style.inningTop : style.inningBottom}>

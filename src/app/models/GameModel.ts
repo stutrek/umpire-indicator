@@ -10,3 +10,15 @@ export interface GameModel {
 	balls: number;
 	outs: number;
 }
+
+export const defaultGame:GameModel = Object.freeze({
+	id: null,
+	homeName: 'Home',
+	visitorName: 'Visitor',
+	inning: 1,
+	homeScore: 0,
+	visitorScore: 0,
+	strikes: 0,
+	balls: 0,
+	outs: 0
+});
